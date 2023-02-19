@@ -126,6 +126,7 @@ void register_car(Car *car)
 {
     car->ptm = time(NULL);
     oc++;
+    pk++;                                   // record allowed car
 }
 
 /*
@@ -241,6 +242,7 @@ void *monitor_runner(void *arg)
     {
         ut = ((double)oc / psize) * 100;
         updateStats(oc, nc, pk, rf, nm, sqw, spt, ut);
+
         show();
         // print separator line
         printf("+------+");
@@ -497,7 +499,6 @@ void create_new_car()
         sem_wait(&queue_empty);                 
         Qenqueue(car);                          // insert the created car to the arrival queue
         sem_post(&queue_full);                  // signal queue full semaphore to allow in-valets
-        pk++;                                   // record allowed car
     }
     else
     {
