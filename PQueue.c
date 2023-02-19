@@ -4,19 +4,15 @@
 
 static PQueue pqueue;
 
-void PQdisp(){
-    printf("--------------------------------------------------------------------------\n");
-    printf("CARS: {");
-    for (int i = pqueue.tail; i >= 0; i--){
-    printf(", car: {cid: %d, vid: %d, cno: %d}", pqueue.data[i]->cid, pqueue.data[i]->vid,  pqueue.data[i]->sno);
-    }
-    printf(" }\n");
-    printf("--------------------------------------------------------------------------\n");
-    // printf("List access: %ld\n",pqueue.list[pqueue.tail]->ltm);
-}
 
-
-/* Initialize the priority pqueue */
+/*
+ * PQinit:
+ * Initialize the priority pqueue
+ *  - n            queue capacity
+ * 
+ * Author Osama Adel Alsahafi
+ * Version 1.00 2023/02/10
+ */
 void PQinit(int n) {
     pqueue.data = (Car **)malloc(n * sizeof(Car *));
     pqueue.list = (Car **)malloc(n * sizeof(Car *));
@@ -25,13 +21,28 @@ void PQinit(int n) {
     pqueue.tail = -1;
 }
 
-/* Free the memory used by the priority pqueue */
+/*
+ * PQfree:
+ * Free the memory used by the priority pqueue
+ *  - n            queue capacity
+ * 
+ * Author Osama Adel Alsahafi
+ * Version 1.00 2023/02/10
+ */
 void PQfree() {
     free(pqueue.data);
     free(pqueue.list);
 }
 
-
+/*
+ * swap:
+ * Helper function to swap two element in the pqueue
+ *  - i            index of the first element
+ *  - j            index of the second element
+ * 
+ * Author Osama Adel Alsahafi
+ * Version 1.00 2023/02/10
+ */
 void swap(int i, int j){
     Car* temp1 = pqueue.data[i];
     Car* temp2 = pqueue.list[i];
@@ -42,7 +53,14 @@ void swap(int i, int j){
     pqueue.list[j] = temp2;
 }
 
-/* Insert a new element into the priority pqueue */
+/*
+ * PQenqueue:
+ * Insert a new element into the priority pqueue
+ *  - car            car to be enqueued
+ * 
+ * Author Osama Adel Alsahafi
+ * Version 1.00 2023/02/10
+ */
 void PQenqueue(Car *car) {
     // Check if the pqueue is full
     if (PQisFull()) {
@@ -59,7 +77,13 @@ void PQenqueue(Car *car) {
     pqueue.count++;
 }
 
-/* Remove the element with the highest priority from the priority pqueue */
+/*
+ * PQserve:
+ * Remove the element with the highest priority from the priority pqueue 
+ * 
+ * Author Osama Adel Alsahafi
+ * Version 1.00 2023/02/10
+ */
 Car* PQserve() {
     Car *car;
 
@@ -75,8 +99,13 @@ Car* PQserve() {
     return car;
 }
 
-
-/* Return the element with the highest priority without removing it from the pqueue */
+/*
+ * PQpeek:
+ * Return the element with the highest priority without removing it from the pqueue.
+ * 
+ * Author Osama Adel Alsahafi
+ * Version 1.00 2023/02/10
+ */
 Car* PQpeek() {
     // Check if the pqueue is empty
     if (PQisEmpty()) {
@@ -86,7 +115,15 @@ Car* PQpeek() {
 
     return pqueue.data[pqueue.tail];
 }
-// FIX: iterator
+
+/*
+ * PQiterator:
+ * Return a list of the pqueue contents and its size.
+ *  -sz           return size of the pqueue
+ * 
+ * Author Osama Adel Alsahafi
+ * Version 1.00 2023/02/10
+ */
 Car** PQiterator(int *sz){
     int i, j;
     for (i = pqueue.head, j = 0; j < pqueue.count; i = (i + 1) % pqueue.capacity, j++) {
@@ -96,22 +133,46 @@ Car** PQiterator(int *sz){
     return pqueue.list;
 }
 
-/* Return the number of elements in the priority pqueue */
+/*
+ * PQsize:
+ * Return the number of elements in the priority pqueue 
+ * 
+ * Author Osama Adel Alsahafi
+ * Version 1.00 2023/02/10
+ */
 int PQsize() {
     return pqueue.count;
 }
 
-/* Return the capacity of the priority pqueue */
+/*
+ * PQcapacity:
+ * Return the capacity of the priority pqueue
+ * 
+ * Author Osama Adel Alsahafi
+ * Version 1.00 2023/02/10
+ */
 int PQcapacity() {
     return pqueue.capacity;
 }
 
-/* Return 1 if the priority pqueue is full, 0 otherwise */
+/*
+ * PQisFull:
+ * Return true if the priority pqueue is full, false otherwise.
+ * 
+ * Author Osama Adel Alsahafi
+ * Version 1.00 2023/02/10
+ */
 bool PQisFull() {
     return (pqueue.count == pqueue.capacity);
 }
 
-/* Return 1 if the priority pqueue is empty, 0 otherwise */
+/*
+ * PQisEmpty:
+ * Return true if the priority pqueue is empty, false otherwise.
+ * 
+ * Author Osama Adel Alsahafi
+ * Version 1.00 2023/02/10
+ */
 bool PQisEmpty() {
     return (pqueue.count == 0);
 }

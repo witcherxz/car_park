@@ -11,28 +11,98 @@ typedef struct PQueue_t {
     int head;            	// The queue head position
 } PQueue;
 
-void swap(int i, int j);
-
+/*
+ * PQinit:
+ * Initialize the priority pqueue
+ *  - n            queue capacity
+ * 
+ * Author Osama Adel Alsahafi
+ * Version 1.00 2023/02/10
+ */
 void PQinit(int n);
 
+/*
+ * PQfree:
+ * Free the memory used by the priority pqueue
+ *  - n            queue capacity
+ * 
+ * Author Osama Adel Alsahafi
+ * Version 1.00 2023/02/10
+ */
 void PQfree();
 
 void PQclear();
 
+/*
+ * PQenqueue:
+ * Insert a new element into the priority pqueue
+ *  - car            car to be enqueued
+ * 
+ * Author Osama Adel Alsahafi
+ * Version 1.00 2023/02/10
+ */
 void PQenqueue(Car *car);
 
+/*
+ * PQserve:
+ * Remove the element with the highest priority from the priority pqueue 
+ * 
+ * Author Osama Adel Alsahafi
+ * Version 1.00 2023/02/10
+ */
 Car* PQserve();
 
+/*
+ * PQpeek:
+ * Return the element with the highest priority without removing it from the pqueue.
+ * 
+ * Author Osama Adel Alsahafi
+ * Version 1.00 2023/02/10
+ */
 Car* PQpeek();
 
+/*
+ * PQiterator:
+ * Return a list of the pqueue contents and its size.
+ *  -sz           return size of the pqueue
+ * 
+ * Author Osama Adel Alsahafi
+ * Version 1.00 2023/02/10
+ */
 Car** PQiterator(int *sz);
 
+/*
+ * PQcapacity:
+ * Return the capacity of the priority pqueue
+ * 
+ * Author Osama Adel Alsahafi
+ * Version 1.00 2023/02/10
+ */
 int PQcapacity();
 
+/*
+ * PQsize:
+ * Return the number of elements in the priority pqueue 
+ * 
+ * Author Osama Adel Alsahafi
+ * Version 1.00 2023/02/10
+ */
 int PQsize();
 
-void PQdisp();
-
+/*
+ * PQisFull:
+ * Return true if the priority pqueue is full, false otherwise.
+ * 
+ * Author Osama Adel Alsahafi
+ * Version 1.00 2023/02/10
+ */
 bool PQisFull();
 
+/*
+ * PQisEmpty:
+ * Return true if the priority pqueue is empty, false otherwise.
+ * 
+ * Author Osama Adel Alsahafi
+ * Version 1.00 2023/02/10
+ */
 bool PQisEmpty();
