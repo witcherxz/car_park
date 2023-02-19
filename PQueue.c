@@ -37,7 +37,6 @@ void swap(int i, int j){
     Car* temp2 = pqueue.list[i];
     
     pqueue.data[i] = pqueue.data[j];
-    pqueue.list[i] = pqueue.list[j];
     
     pqueue.data[j] = temp1;
     pqueue.list[j] = temp2;
@@ -55,7 +54,7 @@ void PQenqueue(Car *car) {
     pqueue.data[pqueue.tail] = car;
     pqueue.list[pqueue.tail] = car;
     for(int i = pqueue.tail; i > 0;i--){
-        if(pqueue.data[i]->ltm > pqueue.data[i-1]->ltm) swap(i,i-1);
+        if(pqueue.data[i]->ltm + pqueue.data[i]->atm > pqueue.data[i - 1]->ltm + pqueue.data[i - 1]->atm) swap(i,i-1);
     }
     pqueue.count++;
 }
@@ -71,7 +70,6 @@ Car* PQserve() {
     }
     car = pqueue.data[pqueue.tail];
     pqueue.data[pqueue.tail]= NULL;
-    pqueue.list[pqueue.tail]= NULL;
     pqueue.tail--;
     pqueue.count--;
     return car;
@@ -90,6 +88,10 @@ Car* PQpeek() {
 }
 // FIX: iterator
 Car** PQiterator(int *sz){
+    int i, j;
+    for (i = pqueue.head, j = 0; j < pqueue.count; i = (i + 1) % pqueue.capacity, j++) {
+        pqueue.list[j] = pqueue.data[i];
+    }
     *sz = pqueue.count;
     return pqueue.list;
 }

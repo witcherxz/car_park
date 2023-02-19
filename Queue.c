@@ -95,7 +95,6 @@ Car* Qpeek(){
  * Return a list of the queue contents and its size.
  * ===========================================================================
  */
-// FIX: iterator
 Car** Qiterator(int *sz){
     pthread_mutex_lock(&q_lock);
     int i, j;

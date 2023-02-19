@@ -3,9 +3,9 @@
 #include <stdlib.h>
 #include <time.h>
 static RandList rl;
-
+//TODO: Clean this code
 void RLdisp(int i){
-    printf("---------Display---------\n");
+    printf("---------Display RL ---------\n");
     printf("COUNT: %d\n",rl.count);
     printf("LIST: (");
     for (int i = 0; i < rl.count; i++)
