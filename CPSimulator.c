@@ -141,7 +141,6 @@ void register_car(Car *car)
  */
 void *in_valet_runner(void *arg)
 {
-
     int id = (intptr_t)arg;
     while (1)
     {
@@ -183,6 +182,7 @@ void deregister_car(Car *car)
     spt += time(NULL) - car->ptm;
     oc--;
 }
+
 /*
  * out_valet_runner:
  * out-valet thread runner this function represent the behavior of a valet when handling leaving cars;
@@ -207,7 +207,7 @@ void *out_valet_runner(void *arg)
             setVoCar(id, car);                  // set the car to the valet
             thread_sleep(CS_TIME);
             thread_sleep(VALET_SLEEP_TIME);
-            // remove car from parl
+            // remove car from park
             PQserve();
             remove_car_from_park(car);
             deregister_car(car);
