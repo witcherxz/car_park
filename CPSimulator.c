@@ -417,6 +417,7 @@ bool validate_args()
         printf("Error: expnum must be a real number in the range [0.01 - 1.50].\n");
         return false;
     }
+    return true;
 }
 
 /*
@@ -479,6 +480,7 @@ bool init_sim(int argc, char const *argv[])
         pthread_create(&thread, NULL, out_valet_runner, (void *)i);
         out_valet_threads[i] = thread;
     }
+    return true;
 }
 
 /*
