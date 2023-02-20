@@ -153,12 +153,12 @@ void *in_valet_runner(void *arg)
         acquire_car(id, car);               // acquire the car for the current valet
 
         sem_wait(&park_empty);              // wait for the park if full
-        pthread_mutex_lock(&park_lock);
         setViState(id, FETCH);              // change valet state to fetch
+        pthread_mutex_lock(&park_lock);
         thread_sleep(CS_TIME);
-        setViState(id, MOVE);               // change valet state to move
         thread_sleep(VALET_SLEEP_TIME);     
         // add car to park
+        setViState(id, MOVE);               // change valet state to move
         PQenqueue(car);
         add_car_to_park(car);
         register_car(car);
@@ -206,14 +206,15 @@ void *out_valet_runner(void *arg)
         if (time(NULL) - car->ptm >= car->ltm)  // check if the time of leave arrived
         {
             setVoCar(id, car);                  // set the car to the valet
+            setVoState(id, FETCH);
             thread_sleep(CS_TIME);
             thread_sleep(VALET_SLEEP_TIME);
             // remove car from park
             PQserve();
             remove_car_from_park(car);
             deregister_car(car);
-            thread_sleep(VALET_SLEEP_TIME);
             setVoState(id, MOVE);
+            thread_sleep(VALET_SLEEP_TIME);
             free(car);                          // free the allocated mommy for the removed car
             pthread_mutex_unlock(&park_lock);
             sem_post(&park_empty);              // signal park empty to allow in-valets
