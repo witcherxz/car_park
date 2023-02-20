@@ -146,14 +146,15 @@ void *in_valet_runner(void *arg)
     while (1)
     {
         sem_wait(&queue_full);              // wait for the queue if empty
-        setViState(id, WAIT);               // set the valet state to wait
+        setViState(id, FETCH);              // change valet state to fetch
         Car *car = Qserve();                // serve a car
         sqw +=time(NULL) - car->atm;        // record waiting time in the queue
         sem_post(&queue_empty);             // signal queue count empty 
         acquire_car(id, car);               // acquire the car for the current valet
+        thread_sleep(VALET_SLEEP_TIME);     
 
+        setViState(id, WAIT);               // set the valet state to wait
         sem_wait(&park_empty);              // wait for the park if full
-        setViState(id, FETCH);              // change valet state to fetch
         pthread_mutex_lock(&park_lock);
         thread_sleep(CS_TIME);
         thread_sleep(VALET_SLEEP_TIME);     
