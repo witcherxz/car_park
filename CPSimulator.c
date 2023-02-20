@@ -307,7 +307,7 @@ char *format_time(time_t t)
 void print_stat()
 {
     double aqw = safe_divide((double)sqw, pk);
-    double apt = safe_divide((double)spt, pk);
+    double apt = safe_divide((double)spt, (pk - PQsize()));
     printf("\n");
     printf("%-35s %s\n","Simulator started at:" ,format_time(sbt));
     printf(" %-35s%d cars.\n","Park Space Capacity was:", psize);
@@ -327,7 +327,7 @@ void print_stat()
     printf("\n");
     printf(" %-35s%f seconds\n","Average queue waiting time:" ,aqw);
     printf(" %-35s%f seconds\n","Average parking time:" ,apt);
-    printf(" %-35s%f \n","Percentage of park utilization:" ,apt);
+    printf(" %-35s%f \n","Percentage of park utilization:" ,ut);
     printf("\n");
     printf("%s:\t CarPark exits.\n", format_time(time(NULL)));
     printf("\n");
