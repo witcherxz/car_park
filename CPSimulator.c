@@ -295,7 +295,7 @@ char *format_time(time_t t)
     return ft;
 }
 
-#define safe_divide(x, y) (y != 0) ? (double)x / y : 0; // macro to divide two number x/y and return 0 if divisor [y] is zero
+#define safe_divide(x, y) (y != 0) ? x / y : 0; // macro to divide two number x/y and return 0 if divisor [y] is zero
 
 /*
  * print_stat:
@@ -306,8 +306,8 @@ char *format_time(time_t t)
  */
 void print_stat()
 {
-    double aqw = safe_divide(sqw, pk);
-    double apt = safe_divide(spt, pk);
+    double aqw = safe_divide((double)sqw, pk);
+    double apt = safe_divide((double)spt, pk);
     printf("\n");
     printf("%-35s %s\n","Simulator started at:" ,format_time(sbt));
     printf(" %-35s%d cars.\n","Park Space Capacity was:", psize);
