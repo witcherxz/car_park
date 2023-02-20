@@ -522,7 +522,8 @@ void create_new_car()
 int main(int argc, char const *argv[])
 {
     sbt = time(NULL);                       // record Simulator start time
-    signal(SIGINT, sig_handler);            // Register signal handler
+    signal(SIGINT, sig_handler);            // Register SIGINT signal handler
+    signal(SIGTERM, sig_handler);            // Register SIGTERM signal handler
     if (!init_sim(argc, argv))  return 1;   // initialize simulator
     // enter endless loop
     while (1)
