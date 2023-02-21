@@ -220,6 +220,7 @@ void *out_valet_runner(void *arg)
             pthread_mutex_unlock(&park_lock);
             sem_post(&park_empty);              // signal park empty to allow in-valets
             setVoState(id, READY);              // change state to ready
+            thread_sleep(VALET_SLEEP_TIME);
         }
         else
         {                                       // if leaving time does not arrive
