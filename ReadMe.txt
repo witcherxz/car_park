@@ -1,44 +1,7 @@
 Car-park Simulator:
   This car park simulator is intended to visualize graphically how multiple threads
   and thread pools interact together by communicating through shared data structures
-  to correctly solve common OS problems. The graphical interface part of the simulator
-  is provided in the following four files:
-    - CarPark.h: Header file to define all the interface structures and functions
-                 required to use the graphical components of the simulator. It also
-                 provides some constants and other useful auxiliary functons.
-    - CarPark.o: Object code used to connect the simulator to the graphics display
-                 of the computer system through calling the functions defined in
-                 the previous header file. It depends on the following components
-                 being installed in your computer system:
-                   - Some desktop GUI to provide graphical environment
-                   - SDL2 development package: "libsdl2-dev"
-                   - SDL_bgi 2D graphics Package: "sdl_bgi_2.5.0-1"
-                 The last component above is a simple 2D graphics library used by
-                 CarPark.o to draw the required graphical output on the screen.
-    - Queue.h:   Header file to define the structure and functions of the FIFO queue
-                 assumed and used by the graphical interface.
-    - Car.h:     Header file to define the structure and functions of a car as it is
-                 assumed and used by the graphical interface.
-
-  The Queue and Car structures must be created as defined in the above headers, and
-  their defined functions must be implemented as specified there in order to be used
-  in the simulator.
-
-  To run the simulator you need to copy the file "carpark.tgz" to your virtual Linux
-  system and unpack it by issuing this command:
-
-    $ tar -xf carpark.tgz
-
-  As a result, you will find the following files in your working directory:
-    - CarPark.o:      As defined above.
-    - CarPark.h:      As defined above.
-    - Queue.h:        As defined above.
-    - Car.h:          As defined above.
-    - makefile:       Provided but does not work unless you provide files "CPSimulator.c"
-                      and "Queue.c" which are your car park simulator program and your
-                      FIFO queue implementation, respectively.
-    - CP_Example.jpg: A screen shot of the car park simulator. Use it as a guide of what
-                      your simulator is expected to do and look like.
+  to correctly solve common OS problems. 
 
 The Graphical Display:
   The screen shot image shows a graphical window showing four areas:
