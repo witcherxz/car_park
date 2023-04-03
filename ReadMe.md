@@ -7,6 +7,7 @@ Car-park Simulator:
 
 The Graphical Display:
   The screen shot image shows a graphical window showing four areas:
+  
     - The parking space:
         Has the entered capacity of parking slots, with division lines and numbered
         labels. This space will change the scale according to the given size.
