@@ -1,3 +1,5 @@
+![Example](https://github.com/witcherxz/car_park/blob/main/CP_Example.jpg)  
+
 Car-park Simulator:
   This car park simulator is intended to visualize graphically how multiple threads
   and thread pools interact together by communicating through shared data structures
